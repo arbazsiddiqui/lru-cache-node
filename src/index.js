@@ -67,9 +67,9 @@ class Cache {
 
 class Node {
 	constructor(key, value) {
-		if (!key)
+		if (key===undefined)
 			throw new Error("Key not provided");
-		if (!value)
+		if (value===undefined)
 			throw new Error("Value not provided");
 		this.content = {key, value};
 		this.prev = null;
@@ -84,3 +84,5 @@ class Node {
 		return this.content.key
 	}
 }
+
+module.exports = Cache;
