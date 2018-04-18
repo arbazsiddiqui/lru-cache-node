@@ -9,9 +9,9 @@ class Cache {
 	}
 
 	/* Three steps :
-		1. Make nodes next to current head
-		2. Make heads previous to node
-		3. Make head as node
+		1. Make node's next to current head
+		2. Make head's previous to node
+		3. Make head as the node
 	 */
 	setNodeAsHead(node) {
 		node.next = this.head;
@@ -28,15 +28,11 @@ class Cache {
 
 	set(key, value) {
 		const node = new Node(key, value);
-		if (this.hashMap[key]) {
-
-		} else {
-			if (this.size >= this.limit) {
-				delete this.hashMap[this.tail.content.key];
-				this.size -= 1;
-				this.tail = this.tail.prev;
-				this.tail.next = null;
-			}
+		if (this.size >= this.limit) {
+			delete this.hashMap[this.tail.content.key];
+			this.size -= 1;
+			this.tail = this.tail.prev;
+			this.tail.next = null;
 		}
 		this.setNodeAsHead(node);
 	}
@@ -64,11 +60,9 @@ class Cache {
 			this.remove(oldNode);
 			this.setNodeAsHead(newNode);
 			return value
-		} else {
-
 		}
+		return null
 	}
-
 }
 
 class Node {
