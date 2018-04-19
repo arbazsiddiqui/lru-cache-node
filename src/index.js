@@ -1,8 +1,9 @@
 class Cache {
 
-	constructor(limit) {
+	constructor(limit, maxAge) {
 		this.size = 0;
 		this.limit = typeof limit === 'number' ? limit : Infinity;
+		this.maxAge = typeof maxAge === 'number' ? maxAge : Infinity;
 		this.hashMap = {};
 		this.head = null;
 		this.tail = null;
@@ -26,8 +27,9 @@ class Cache {
 		this.hashMap[node.content.key] = node
 	}
 
-	set(key, value) {
-		const node = new Node(key, value);
+	set(key, value, maxAge) {
+		maxAge = typeof maxAge === 'number' ? maxAge : this.maxAge;
+		const node = new Node(key, value, maxAge, Date.now()+maxAge);
 		if (this.size >= this.limit) {
 			delete this.hashMap[this.tail.content.key];
 			this.size -= 1;
@@ -56,7 +58,13 @@ class Cache {
 		const oldNode = this.hashMap[key];
 		if (oldNode) {
 			const value = oldNode.getValue();
-			const newNode = new Node(key, value);
+			const nodeMaxAge = oldNode.getMaxAge();
+			const maxAge = typeof nodeMaxAge === 'number' ? nodeMaxAge : this.maxAge;
+			if(Date.now() >= oldNode.getExpiry()){
+				this.remove(oldNode);
+				return null;
+			}
+			const newNode = new Node(key, value, maxAge, Date.now()+maxAge);
 			this.remove(oldNode);
 			this.setNodeAsHead(newNode);
 			return value
@@ -66,7 +74,7 @@ class Cache {
 }
 
 class Node {
-	constructor(key, value) {
+	constructor(key, value, maxAge, expires) {
 		if (key===undefined)
 			throw new Error("Key not provided");
 		if (value===undefined)
@@ -74,10 +82,20 @@ class Node {
 		this.content = {key, value};
 		this.prev = null;
 		this.next = null;
+		this.maxAge = typeof maxAge === 'number' ? maxAge : Infinity;
+		this.expires = typeof expires === 'number' ? expires : Infinity;
 	}
 
 	getValue() {
 		return this.content.value
+	}
+
+	getMaxAge() {
+		return this.maxAge
+	}
+
+	getExpiry(){
+		return this.expires
 	}
 
 	getKey() {
