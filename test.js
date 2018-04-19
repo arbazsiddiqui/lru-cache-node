@@ -71,11 +71,11 @@ test('gets with expiry', async t => {
 	t.is(sapiens, 5);
 
 	await sleep(3);
-	const sapiensAfter3s = cache.get("Sapiens");
+	const sapiensAfter3s = await cache.get("Sapiens");
 	t.is(sapiensAfter3s, 5);
 
 	await sleep(11);
-	const sapiensAfter11s = cache.get("Sapiens");
+	const sapiensAfter11s = await cache.get("Sapiens");
 	t.is(sapiensAfter11s, null);
 	t.is(cache.hashMap.Sapiens, undefined);
 
@@ -84,19 +84,19 @@ test('gets with expiry', async t => {
 	t.is(bookThief, 4);
 
 	await sleep(10);
-	const bookThiefAfter10s = cache.get("Book Thief");
+	const bookThiefAfter10s = await cache.get("Book Thief");
 	t.is(bookThiefAfter10s, 4);
 
 	await sleep(10);
-	const bookThiefAfter20s = cache.get("Book Thief");
+	const bookThiefAfter20s = await cache.get("Book Thief");
 	t.is(bookThiefAfter20s, 4);
 
 	await sleep(10);
-	const bookThiefAfter30s = cache.get("Book Thief");
+	const bookThiefAfter30s = await cache.get("Book Thief");
 	t.is(bookThiefAfter30s, 4);
 
 	await sleep(30);
-	const bookThiefAfter30sWithoutReset = cache.get("Book Thief");
+	const bookThiefAfter30sWithoutReset = await cache.get("Book Thief");
 	t.is(bookThiefAfter30sWithoutReset, null);
 });
 
@@ -107,4 +107,21 @@ test('stale', async t => {
 	t.is(cache.get("Sapiens"), 5);
 	t.is(cache.get("Sapiens"), null);
 	t.is(cache.hashMap.Sapiens, undefined);
+});
+
+test('peek', t => {
+	const cache = new Cache(3);
+
+	cache.set("Sapiens", 5);
+	const sapiens = cache.peek("Sapiens");
+	t.is(sapiens, 5);
+
+	const test = cache.peek("test");
+	t.is(test, null);
+
+	cache.set("Book Thief", 4);
+	cache.set("Catcher In The Rye", 0);
+	cache.peek("test");
+	cache.set("Thus Spoke Zarathustra", 4);
+	t.is(cache.hashMap["Sapiens"], undefined);
 });
