@@ -1,9 +1,10 @@
 class Cache {
 
-	constructor(limit, maxAge) {
+	constructor(limit, maxAge, stale) {
 		this.size = 0;
 		this.limit = typeof limit === 'number' ? limit : Infinity;
 		this.maxAge = typeof maxAge === 'number' ? maxAge : Infinity;
+		this.stale = typeof stale === 'boolean' ? stale : false;
 		this.hashMap = {};
 		this.head = null;
 		this.tail = null;
@@ -62,7 +63,7 @@ class Cache {
 			const maxAge = typeof nodeMaxAge === 'number' ? nodeMaxAge : this.maxAge;
 			if(Date.now() >= oldNode.getExpiry()){
 				this.remove(oldNode);
-				return null;
+				return this.stale ? oldNode.getValue() : null
 			}
 			const newNode = new Node(key, value, maxAge, Date.now()+maxAge);
 			this.remove(oldNode);
