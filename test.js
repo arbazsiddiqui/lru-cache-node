@@ -98,6 +98,13 @@ test('gets with expiry', async t => {
 	await sleep(30);
 	const bookThiefAfter30sWithoutReset = cache.get("Book Thief");
 	t.is(bookThiefAfter30sWithoutReset, null);
+});
 
-
+test('stale', async t => {
+	const cache = new Cache(3, 10, true);
+	cache.set("Sapiens", 5);
+	await sleep(11)
+	t.is(cache.get("Sapiens"), 5);
+	t.is(cache.get("Sapiens"), null);
+	t.is(cache.hashMap.Sapiens, undefined);
 });
