@@ -110,6 +110,10 @@ class Cache {
 			node = node.next;
 		}
 	}
+
+	getSize() {
+		return this.size
+	}
 }
 
 class Node {
