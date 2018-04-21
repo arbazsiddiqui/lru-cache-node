@@ -125,3 +125,19 @@ test('peek', t => {
 	cache.set("Thus Spoke Zarathustra", 4);
 	t.is(cache.hashMap["Sapiens"], undefined);
 });
+
+test('reset', t => {
+	const cache = new Cache(3, 10, true);
+
+	cache.set("Sapiens", 5);
+	cache.set("Book Thief", 4);
+	cache.set("Catcher In The Rye", 0);
+	cache.reset();
+	t.is(cache.size, 0);
+	t.is(cache.limit, 3);
+	t.is(cache.maxAge, 10);
+	t.is(cache.stale, true);
+	t.deepEqual(cache.hashMap, {});
+	t.is(cache.head, null);
+	t.is(cache.tail, null);
+});
