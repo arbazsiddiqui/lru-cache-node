@@ -163,3 +163,22 @@ test('contains', t => {
 	t.is(cache.contains("x"), false);
 	t.is(cache.contains("Catcher In The Rye"), true);
 });
+
+test('forEach', t => {
+	const cache = new Cache(3, 10, true);
+
+	cache.set("Sapiens", 5);
+	cache.set("Book Thief", 4);
+	cache.set("Catcher In The Rye", 0);
+	cache.forEach((obj, index) => {
+		if(index === 0){
+			t.is(obj["Catcher In The Rye"], 0)
+		}
+		if(index === 1){
+			t.is(obj["Book Thief"], 4)
+		}
+		if(index === 2){
+			t.is(obj["Sapiens"], 5)
+		}
+	})
+});
