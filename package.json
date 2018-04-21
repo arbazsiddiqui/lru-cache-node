@@ -1,6 +1,6 @@
 {
   "name": "lru-cache-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lighting fast cache manager for node with least-recently-used policy.",
   "main": "src/index.js",
   "scripts": {
