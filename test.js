@@ -79,7 +79,7 @@ test('gets with expiry', async t => {
 	t.is(sapiensAfter11s, null);
 	t.is(cache.hashMap.Sapiens, undefined);
 
-	cache.set("Book Thief", 4,  25);
+	cache.set("Book Thief", 4, 25);
 	const bookThief = cache.get("Book Thief");
 	t.is(bookThief, 4);
 
@@ -148,7 +148,7 @@ test('toJSON', t => {
 	cache.set("Sapiens", 5);
 	cache.set("Book Thief", 4);
 	cache.set("Catcher In The Rye", 0);
-	t.deepEqual(cache.toJSON(), [ { key: 'Catcher In The Rye', value: 0 },
-		{ key: 'Book Thief', value: 4 },
-		{ key: 'Sapiens', value: 5 } ])
+	t.deepEqual(cache.toJSON(), [{key: 'Catcher In The Rye', value: 0},
+		{key: 'Book Thief', value: 4},
+		{key: 'Sapiens', value: 5}])
 });
