@@ -76,6 +76,13 @@ class Cache {
 	peek(key) {
 		return this.hashMap[key] ?  this.hashMap[key].getValue() : null
 	}
+
+	reset() {
+		this.size = 0;
+		this.hashMap = {};
+		this.head = null;
+		this.tail = null;
+	}
 }
 
 class Node {
