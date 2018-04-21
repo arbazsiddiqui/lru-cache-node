@@ -1,4 +1,4 @@
-# lru-cache-node
+# lru-cache-node [![Build Status](https://travis-ci.org/arbazsiddiqui/lru-cache-node.svg?branch=master)](https://travis-ci.org/arbazsiddiqui/lru-cache-node)
 
 > A lighting fast cache manager for node with least-recently-used policy.
 
