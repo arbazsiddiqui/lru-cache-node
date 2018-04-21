@@ -170,15 +170,18 @@ test('forEach', t => {
 	cache.set("Sapiens", 5);
 	cache.set("Book Thief", 4);
 	cache.set("Catcher In The Rye", 0);
-	cache.forEach((obj, index) => {
+	cache.forEach((key, value, index) => {
 		if(index === 0){
-			t.is(obj["Catcher In The Rye"], 0)
+			t.is(key, "Catcher In The Rye");
+			t.is(value, 0);
 		}
 		if(index === 1){
-			t.is(obj["Book Thief"], 4)
+			t.is(key, "Book Thief");
+			t.is(value, 4);
 		}
 		if(index === 2){
-			t.is(obj["Sapiens"], 5)
+			t.is(key, "Sapiens");
+			t.is(value, 5);
 		}
 	})
 });

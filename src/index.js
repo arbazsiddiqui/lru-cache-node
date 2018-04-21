@@ -105,7 +105,7 @@ class Cache {
 		let node = this.head;
 		let i = 0;
 		while (node) {
-			callback.apply(this, [{[node.getKey()]: node.getValue()}, i]);
+			callback.apply(this, [node.getKey(), node.getValue(), i]);
 			i++;
 			node = node.next;
 		}
