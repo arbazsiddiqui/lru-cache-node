@@ -2,12 +2,12 @@
 
 > A lighting fast cache manager for node with least-recently-used policy.
 
-A super fast cache for node with LRU policy. Cache will keep on adding values until the `limit` is reached.
+A super fast cache for node with LRU policy. Cache will keep on adding values until the `maxSize` is reached.
 
 After that it will start popping out the Least recently used/accessed value from the cache in order to set the new ones.
 
 
-Supports expiry and stale gets.
+Supports expiry and stale.
 
 Implemented using doubly-linked-list and hashmap with O(1) time complexity for gets and sets.
 

@@ -1,14 +1,26 @@
 {
   "name": "lru-cache-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lighting fast cache manager for node with least-recently-used policy.",
   "main": "src/index.js",
   "scripts": {
     "test": "ava -s"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arbazsiddiqui/lru-cache-node.git"
+  },
+  "keywords": [
+    "cache",
+    "lru",
+    "mru"
+  ],
+  "author": "Arbaz Siddiqui <arbaz00@gmail.com> (http://arbazsiddiqui.me/)",
   "license": "ISC",
   "devDependencies": {
     "ava": "1.0.0-beta.4"
-  }
+  },
+  "files": [
+    "index.js"
+  ]
 }
