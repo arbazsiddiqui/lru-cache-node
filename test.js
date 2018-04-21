@@ -152,3 +152,14 @@ test('toJSON', t => {
 		{key: 'Book Thief', value: 4},
 		{key: 'Sapiens', value: 5}])
 });
+
+test('contains', t => {
+	const cache = new Cache(3, 10, true);
+
+	cache.set("Sapiens", 5);
+	cache.set("Book Thief", 4);
+	cache.set("Catcher In The Rye", 0);
+	t.is(cache.contains("Sapiens"), true);
+	t.is(cache.contains("x"), false);
+	t.is(cache.contains("Catcher In The Rye"), true);
+});
