@@ -142,13 +142,13 @@ test('reset', t => {
 	t.is(cache.tail, null);
 });
 
-test('toJSON', t => {
+test('toArray', t => {
 	const cache = new Cache(3, 10, true);
 
 	cache.set("Sapiens", 5);
 	cache.set("Book Thief", 4);
 	cache.set("Catcher In The Rye", 0);
-	t.deepEqual(cache.toJSON(), [{key: 'Catcher In The Rye', value: 0},
+	t.deepEqual(cache.toArray(), [{key: 'Catcher In The Rye', value: 0},
 		{key: 'Book Thief', value: 4},
 		{key: 'Sapiens', value: 5}])
 });

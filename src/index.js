@@ -84,7 +84,7 @@ class Cache {
 		this.tail = null;
 	}
 
-	toJSON() {
+	toArray() {
 		const arr = [];
 		let node = this.head;
 		while (node) {
