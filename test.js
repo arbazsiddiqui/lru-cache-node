@@ -185,3 +185,14 @@ test('forEach', t => {
 		}
 	})
 });
+
+test('getSize', t => {
+	const cache = new Cache(3, 10, true);
+
+	cache.set("Sapiens", 5);
+	t.is(cache.getSize(), 1);
+	cache.set("Book Thief", 4);
+	t.is(cache.getSize(), 2);
+	cache.set("Catcher In The Rye", 0);
+	t.is(cache.getSize(), 3);
+});
