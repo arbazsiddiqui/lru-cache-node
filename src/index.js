@@ -100,6 +100,16 @@ class Cache {
 	contains(key) {
 		return !!this.hashMap[key]
 	}
+
+	forEach(callback) {
+		let node = this.head;
+		let i = 0;
+		while (node) {
+			callback.apply(this, [{[node.getKey()]: node.getValue()}, i]);
+			i++;
+			node = node.next;
+		}
+	}
 }
 
 class Node {
