@@ -83,6 +83,19 @@ class Cache {
 		this.head = null;
 		this.tail = null;
 	}
+
+	toJSON() {
+		const arr = [];
+		let node = this.head;
+		while (node) {
+			arr.push({
+				key : node.getKey(),
+				value : node.getValue()
+			});
+			node = node.next;
+		}
+		return arr;
+	}
 }
 
 class Node {
