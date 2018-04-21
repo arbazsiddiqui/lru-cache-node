@@ -114,6 +114,11 @@ class Cache {
 	getSize() {
 		return this.size
 	}
+
+	delete(key) {
+		const node = this.hashMap[key];
+		this.remove(node)
+	}
 }
 
 class Node {
