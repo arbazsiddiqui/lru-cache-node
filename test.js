@@ -196,3 +196,15 @@ test('getSize', t => {
 	cache.set("Catcher In The Rye", 0);
 	t.is(cache.getSize(), 3);
 });
+
+test('delete', t => {
+	const cache = new Cache(3, 10, true);
+
+	cache.set("Sapiens", 5);
+	cache.set("Book Thief", 4);
+	cache.set("Catcher In The Rye", 0);
+	cache.delete("Catcher In The Rye");
+	t.is(cache.size, 2);
+	t.is(cache.hashMap["Catcher In The Rye"], undefined);
+	t.is(cache.head.content.key, "Book Thief")
+});
