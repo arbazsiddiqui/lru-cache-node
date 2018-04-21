@@ -96,6 +96,10 @@ class Cache {
 		}
 		return arr;
 	}
+
+	contains(key) {
+		return !!this.hashMap[key]
+	}
 }
 
 class Node {
