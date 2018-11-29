@@ -101,6 +101,10 @@ class Cache {
 		return !!this.hashMap[key]
 	}
 
+	has(key) {
+		return this.contains(key);
+	}
+
 	forEach(callback) {
 		let node = this.head;
 		let i = 0;
