@@ -116,8 +116,10 @@ class Cache {
 	}
 
 	delete(key) {
-		const node = this.hashMap[key];
-		this.remove(node)
+		if (key in this.hashMap) {
+			const node = this.hashMap[key];
+			this.remove(node)
+		}
 	}
 }
 
