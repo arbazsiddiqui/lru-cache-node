@@ -199,7 +199,7 @@ test('getSize', t => {
 
 test('delete', t => {
 	const cache = new Cache(3, 10, true);
-
+	cache.delete("Catcher In The Rye");
 	cache.set("Sapiens", 5);
 	cache.set("Book Thief", 4);
 	cache.set("Catcher In The Rye", 0);
