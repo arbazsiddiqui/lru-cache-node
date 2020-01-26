@@ -148,7 +148,7 @@ cache.toArray()
 
 ### forEach(callback)
 
-Takes a function and iterates over all the keys in the cache, in order of recent-ness. Callback takes `key`, `value` and `index` as params.
+Takes a function and iterates over all the keys in the cache, in order of recentness. Callback takes `key`, `value` and `index` as params.
 ```js
 let cache = new Cache();
 cache.set("a", 1);
