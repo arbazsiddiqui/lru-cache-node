@@ -4,7 +4,8 @@
   "description": "A lighting fast cache manager for node with least-recently-used policy.",
   "main": "src/index.js",
   "scripts": {
-    "test": "ava -s"
+    "test": "nyc ava",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   "author": "Arbaz Siddiqui <arbaz00@gmail.com> (http://arbazsiddiqui.me/)",
   "license": "ISC",
   "devDependencies": {
-    "ava": "1.0.0-beta.4"
+    "ava": "1.0.0-beta.4",
+    "nyc": "^15.0.0"
   },
   "files": [
     "index.js"

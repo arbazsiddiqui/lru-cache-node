@@ -2,6 +2,7 @@
 ### Node template
 # Logs
 .idea
+*.lcov
 logs
 *.log
 npm-debug.log*
