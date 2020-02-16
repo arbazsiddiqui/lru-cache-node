@@ -64,6 +64,22 @@ test('sets with expiry', t => {
 	t.is(cache.hashMap["Catcher In The Rye"].maxAge, 10);
 });
 
+test('throws for undefinded key and value', t => {
+	const cache = new Cache(3, 10);
+
+	const errorKey = t.throws(() => {
+		cache.set(undefined, 5);
+	});
+
+	t.is(errorKey.message, 'Key not provided');
+
+	const errorValue = t.throws(() => {
+		cache.set('Book Thief', undefined);
+	});
+
+	t.is(errorValue.message, 'Value not provided');
+});
+
 test('gets with expiry', async t => {
 	const cache = new Cache(3, 10);
 	cache.set("Sapiens", 5);
