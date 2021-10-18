@@ -180,6 +180,17 @@ test('contains', t => {
 	t.is(cache.contains("Catcher In The Rye"), true);
 });
 
+test('has', t => {
+  const cache = new Cache(3, 10, true);
+
+  cache.set("Sapiens", 5);
+  cache.set("Book Thief", 4);
+  cache.set("Catcher In The Rye", 0);
+  t.is(cache.has("Sapiens"), true);
+  t.is(cache.has("x"), false);
+  t.is(cache.has("Catcher In The Rye"), true);
+});
+
 test('forEach', t => {
 	const cache = new Cache(3, 10, true);
 
