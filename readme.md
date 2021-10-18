@@ -125,6 +125,10 @@ Deletes the key from the cache.
 
 Returns a boolean indication if the value exists in cache or not.
 
+### has(key)
+
+Alias for `contains` function.
+
 ### getSize()
 
 Returns the current size of cache.
